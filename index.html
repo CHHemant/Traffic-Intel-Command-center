@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BeatIQ Command Center</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="intro" class="intro">
+      <div class="intro-shell">
+        <p class="kicker">INDIA / URBAN MOBILITY COMMAND CENTER</p>
+        <h1>BEATIQ</h1>
+        <h2>TRAFFIC INTELLIGENCE SYSTEM</h2>
+        <div class="meta">
+          <span>COORD 28.6139°N / 77.2090°E</span>
+          <span id="introTimestamp"></span>
+          <span id="introWeather">WEATHER: LIGHT RAIN</span>
+        </div>
+        <div class="intro-actions">
+          <button id="enterBtn">ENTER COMMAND CENTER →</button>
+          <button id="skipMotionBtn" class="ghost">REDUCED MOTION</button>
+        </div>
+      </div>
+    </div>
+
+    <main id="app" class="app hidden">
+      <header class="top-bar">
+        <div class="brand">BEATIQ</div>
+        <nav class="nav">
+          <button class="nav-link active">COMMAND</button>
+          <button class="nav-link">RISK MAP</button>
+          <button class="nav-link">DEPLOYMENT</button>
+          <button class="nav-link">INCIDENTS</button>
+          <button class="nav-link">ANALYTICS</button>
+        </nav>
+        <div class="mode-toggle">
+          <button id="modeLive" class="active">LIVE</button>
+          <button id="modeDemo">DEMO</button>
+        </div>
+        <div id="systemStatus" class="status-row"></div>
+      </header>
+
+      <section class="layout">
+        <aside class="panel left">
+          <div class="block">
+            <p class="label">RISK OVERVIEW</p>
+            <div class="big"><span id="highCount">0</span> HIGH</div>
+            <div><span id="mediumCount">0</span> MEDIUM</div>
+            <div><span id="lowCount">0</span> LOW</div>
+          </div>
+          <div class="block">
+            <p class="label">HIGH-RISK UNMANNED</p>
+            <div class="big"><span id="unmannedCount">0</span> LOCATIONS</div>
+          </div>
+          <div class="block">
+            <p class="label">ACTIVE INCIDENTS</p>
+            <ul id="incidentList"></ul>
+          </div>
+          <div class="block">
+            <p class="label">RANKED LOCATIONS</p>
+            <ul id="rankingList"></ul>
+          </div>
+        </aside>
+
+        <section class="map-wrap">
+          <div class="map-toolbar">
+            <span>LAYER</span>
+            <div id="layerButtons" class="layer-buttons"></div>
+            <span>FILTER</span>
+            <div id="filterButtons" class="layer-buttons"></div>
+          </div>
+          <div id="map" class="map" aria-label="3D city map">
+            <div id="routeLine" class="route hidden"></div>
+            <div id="mapMarkers"></div>
+            <div class="grid"></div>
+          </div>
+          <div id="focusCard" class="focus-card hidden"></div>
+        </section>
+
+        <aside class="panel right">
+          <div class="block">
+            <p class="label">WEATHER</p>
+            <div class="big"><span id="temp">--</span>°C</div>
+            <div id="weatherDesc">--</div>
+            <div id="weatherMeta"></div>
+          </div>
+          <div class="block">
+            <p class="label">RISK SCORE</p>
+            <div class="big"><span id="riskScore">--</span></div>
+            <div id="riskLevel">--</div>
+            <ul id="contributors"></ul>
+          </div>
+          <div class="block">
+            <p class="label">AI RECOMMENDATION</p>
+            <div id="recommendationText">No active recommendation</div>
+            <div class="row">
+              <button id="acceptBtn">ACCEPT</button>
+              <button id="overrideBtn">OVERRIDE</button>
+            </div>
+            <div id="overridePanel" class="hidden"></div>
+          </div>
+          <div class="block">
+            <p class="label">CURRENT vs RECOMMENDED</p>
+            <table id="comparisonTable"></table>
+          </div>
+          <div class="block">
+            <p class="label">SIMULATION</p>
+            <button id="simulateBtn" class="warn">SIMULATE CRITICAL INCIDENT</button>
+            <div id="simulationLog"></div>
+          </div>
+          <div class="block">
+            <p class="label">WEATHER × TRAFFIC × RISK</p>
+            <div id="intelChain"></div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
